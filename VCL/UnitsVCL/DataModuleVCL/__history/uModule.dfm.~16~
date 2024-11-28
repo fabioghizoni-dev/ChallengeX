@@ -1,0 +1,45 @@
+object dtModule: TdtModule
+  Height = 698
+  Width = 1002
+  object Conn: TFDConnection
+    Params.Strings = (
+      'Database=desafio'
+      'User_Name=postgres'
+      'Password=123'
+      'Server=localhost'
+      'DriverID=PG')
+    Connected = True
+    LoginPrompt = False
+    Left = 48
+    Top = 48
+  end
+  object t117_direitos_acesso: TFDTable
+    Connection = Conn
+    TableName = 't117_direitos_acesso'
+    Left = 379
+    Top = 339
+  end
+  object t118_direitos_acesso_usuarios: TFDTable
+    Connection = Conn
+    TableName = 't118_direitos_acesso_usuarios'
+    Left = 528
+    Top = 339
+  end
+  object dtSrc2: TDataSource
+    DataSet = t118_direitos_acesso_usuarios
+    Left = 528
+    Top = 400
+  end
+  object dtSrc: TDataSource
+    DataSet = t117_direitos_acesso
+    Left = 379
+    Top = 395
+  end
+  object DriverPG: TFDPhysPgDriverLink
+    VendorLib = 
+      'C:\Users\User\Desktop\ChallengeX-main\ChallengeX-main\VCL\lib\li' +
+      'bpq.dll'
+    Left = 123
+    Top = 48
+  end
+end

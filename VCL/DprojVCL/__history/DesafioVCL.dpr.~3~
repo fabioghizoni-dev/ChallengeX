@@ -1,0 +1,16 @@
+program DesafioVCL;
+
+uses
+  Vcl.Forms,
+  uMain in '..\UnitsVCL\uMainVCL\uMain.pas' {frmMain},
+  uModule in '..\UnitsVCL\DataModuleVCL\uModule.pas' {DataModule1: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.Run;
+end.

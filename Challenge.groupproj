@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{3FE48740-CB8A-4B8E-9966-D6EF6E407DD3}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="VCL\DprojVCL\DesafioVCL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FMX\DprojFMX\DesafioFMX.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DesafioVCL">
+        <MSBuild Projects="VCL\DprojVCL\DesafioVCL.dproj"/>
+    </Target>
+    <Target Name="DesafioVCL:Clean">
+        <MSBuild Projects="VCL\DprojVCL\DesafioVCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DesafioVCL:Make">
+        <MSBuild Projects="VCL\DprojVCL\DesafioVCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DesafioFMX">
+        <MSBuild Projects="FMX\DprojFMX\DesafioFMX.dproj"/>
+    </Target>
+    <Target Name="DesafioFMX:Clean">
+        <MSBuild Projects="FMX\DprojFMX\DesafioFMX.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DesafioFMX:Make">
+        <MSBuild Projects="FMX\DprojFMX\DesafioFMX.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DesafioVCL;DesafioFMX"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DesafioVCL:Clean;DesafioFMX:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DesafioVCL:Make;DesafioFMX:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
