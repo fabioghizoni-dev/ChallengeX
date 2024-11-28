@@ -141,6 +141,7 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <None Include="..\..\DB\dump-desafio-202411280919.sql"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
             <DependentOn>..\OptionsVCL.optset</DependentOn>
@@ -168,9 +169,15 @@
                 </Source>
             </Delphi.Personality>
             <Deployment Version="4">
-                <DeployFile LocalName="ExeVCL\DesafioVCL.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\..\..\ChallengeX-main\ChallengeX-main\VCL\DprojVCL\ExeVCL\DesafioVCL.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>DesafioVCL.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\..\DB\dump-desafio-202411280919.sql" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

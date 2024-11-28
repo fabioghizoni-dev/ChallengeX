@@ -2,7 +2,7 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'Sistema Principal'
-  ClientHeight = 724
+  ClientHeight = 643
   ClientWidth = 1073
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -12,13 +12,12 @@ object frmMain: TfrmMain
   Font.Style = []
   Position = poScreenCenter
   RoundedCorners = rcOn
-  OnClose = FormClose
   TextHeight = 15
   object pnlMain: TPanel
     Left = 0
     Top = 0
     Width = 1073
-    Height = 724
+    Height = 643
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
@@ -27,7 +26,7 @@ object frmMain: TfrmMain
       Left = 343
       Top = 0
       Width = 730
-      Height = 724
+      Height = 643
       Margins.Left = 0
       Margins.Top = 0
       Margins.Right = 0
@@ -37,12 +36,12 @@ object frmMain: TfrmMain
       Color = clHighlight
       ParentBackground = False
       TabOrder = 0
-      object DBGrid1: TDBGrid
+      object Grid: TDBGrid
         AlignWithMargins = True
         Left = 8
         Top = 8
         Width = 714
-        Height = 345
+        Height = 305
         Margins.Left = 8
         Margins.Top = 8
         Margins.Right = 8
@@ -56,12 +55,12 @@ object frmMain: TfrmMain
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
       end
-      object DBGrid2: TDBGrid
+      object Grid2: TDBGrid
         AlignWithMargins = True
         Left = 8
-        Top = 360
+        Top = 320
         Width = 714
-        Height = 356
+        Height = 315
         Margins.Left = 8
         Margins.Top = 8
         Margins.Right = 8
@@ -81,7 +80,7 @@ object frmMain: TfrmMain
       Left = 0
       Top = 0
       Width = 329
-      Height = 724
+      Height = 643
       Margins.Left = 0
       Margins.Top = 0
       Margins.Right = 0
@@ -91,12 +90,12 @@ object frmMain: TfrmMain
       Color = clHighlight
       ParentBackground = False
       TabOrder = 1
-      object TreeView1: TTreeView
+      object treeView: TTreeView
         AlignWithMargins = True
         Left = 8
         Top = 8
         Width = 313
-        Height = 708
+        Height = 627
         Margins.Left = 8
         Margins.Top = 8
         Margins.Right = 8

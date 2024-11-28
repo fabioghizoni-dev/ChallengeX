@@ -7,7 +7,7 @@
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <ProjectName Condition="'$(ProjectName)'==''">DesafioFMX</ProjectName>
-        <TargetedPlatforms>693267</TargetedPlatforms>
+        <TargetedPlatforms>558099</TargetedPlatforms>
         <AppType>Application</AppType>
         <MainSource>DesafioFMX.dpr</MainSource>
     </PropertyGroup>
@@ -31,16 +31,6 @@
     </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='iOSSimARM64' and '$(Base)'=='true') or '$(Base_iOSSimARM64)'!=''">
         <Base_iOSSimARM64>true</Base_iOSSimARM64>
-        <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='OSX64' and '$(Base)'=='true') or '$(Base_OSX64)'!=''">
-        <Base_OSX64>true</Base_OSX64>
-        <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='OSXARM64' and '$(Base)'=='true') or '$(Base_OSXARM64)'!=''">
-        <Base_OSXARM64>true</Base_OSXARM64>
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
@@ -90,8 +80,8 @@
     </PropertyGroup>
     <Import Project="..\OptionsFMX.optset" Condition="'$(Base)'!='' And Exists('..\OptionsFMX.optset')"/>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <DCC_DcuOutput>D:\MEUS DOCUMENTOS\Documents\Embarcadero\Studio\Projects\ChallengeX\FMX\UnitsFMX\DcusFMX\</DCC_DcuOutput>
-        <DCC_ExeOutput>D:\MEUS DOCUMENTOS\Documents\Embarcadero\Studio\Projects\ChallengeX\FMX\DprojFMX\ExeFMX\</DCC_ExeOutput>
+        <DCC_DcuOutput>C:\Users\User\Desktop\ChallengeX\FMX\UnitsFMX\DcusFMX\</DCC_DcuOutput>
+        <DCC_ExeOutput>C:\Users\User\Desktop\ChallengeX\FMX\DprojFMX\ExeFMX\</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
         <DCC_S>false</DCC_S>
@@ -108,7 +98,7 @@
         <AUP_READ_PHONE_STATE>true</AUP_READ_PHONE_STATE>
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
-        <BRCC_OutputDir>D:\MEUS DOCUMENTOS\Documents\Embarcadero\Studio\Projects\ChallengeX\FMX\ResFMX\</BRCC_OutputDir>
+        <BRCC_OutputDir>C:\Users\User\Desktop\ChallengeX\FMX\ResFMX\</BRCC_OutputDir>
         <SanitizedProjectName>DesafioFMX</SanitizedProjectName>
         <CfgDependentOn>..\OptionsFMX.optset</CfgDependentOn>
     </PropertyGroup>
@@ -234,18 +224,6 @@
         <iPad_Setting58>$(BDS)\bin\Artwork\iOS\iPad\FM_SettingIcon_58x58.png</iPad_Setting58>
         <iPad_Notification40>$(BDS)\bin\Artwork\iOS\iPad\FM_NotificationIcon_40x40.png</iPad_Notification40>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Base_OSX64)'!=''">
-        <DCC_UsePackage>fmx;DbxCommonDriver;bindengine;IndyIPCommon;FireDACCommonODBC;FireDACCommonDriver;IndyProtocols;IndyIPClient;dbxcds;Mitov_Runtime;bindcompfmx;inetdb;FireDACSqliteDriver;DbxClientDriver;soapmidas;fmxFireDAC;dbexpress;DBXMySQLDriver;inet;fmxase;dbrtl;fmxdae;CustomIPTransport;DBXInterBaseDriver;IndySystem;bindcomp;FireDACCommon;IndyCore;RESTBackendComponents;bindcompdbx;rtl;FireDACMySQLDriver;RESTComponents;DBXSqliteDriver;IndyIPServer;dsnapxml;FireDACPgDriver;FireDAC;inetdbxpress;xmlrtl;tethering;dsnap;CloudService;fmxobj;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
-        <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleVersion=1.0.0;CFBundleShortVersionString=1.0.0;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSLocationUsageDescription=The reason for accessing the location information of the user;NSContactsUsageDescription=The reason for accessing the contacts;NSCalendarsUsageDescription=The reason for accessing the calendar data;NSRemindersUsageDescription=The reason for accessing the reminders;NSCameraUsageDescription=The reason for accessing the camera;NSMicrophoneUsageDescription=The reason for accessing the microphone;NSMotionUsageDescription=The reason for accessing the accelerometer;NSDesktopFolderUsageDescription=The reason for accessing the Desktop folder;NSDocumentsFolderUsageDescription=The reason for accessing the Documents folder;NSDownloadsFolderUsageDescription=The reason for accessing the Downloads folder;NSNetworkVolumesUsageDescription=The reason for accessing files on a network volume;NSRemovableVolumesUsageDescription=The reason for accessing files on a removable volume;NSSpeechRecognitionUsageDescription=The reason for requesting to send user data to Apple&apos;s speech recognition servers;ITSAppUsesNonExemptEncryption=false;NSBluetoothAlwaysUsageDescription=The reason for accessing the Bluetooth interface</VerInfo_Keys>
-        <BT_BuildType>Debug</BT_BuildType>
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Base_OSXARM64)'!=''">
-        <DCC_UsePackage>fmx;DbxCommonDriver;bindengine;IndyIPCommon;FireDACCommonODBC;FireDACCommonDriver;IndyProtocols;IndyIPClient;dbxcds;bindcompfmx;inetdb;FireDACSqliteDriver;DbxClientDriver;soapmidas;fmxFireDAC;dbexpress;DBXMySQLDriver;inet;fmxase;dbrtl;fmxdae;CustomIPTransport;DBXInterBaseDriver;IndySystem;bindcomp;FireDACCommon;IndyCore;RESTBackendComponents;bindcompdbx;rtl;FireDACMySQLDriver;RESTComponents;DBXSqliteDriver;IndyIPServer;dsnapxml;FireDACPgDriver;FireDAC;inetdbxpress;xmlrtl;tethering;dsnap;CloudService;fmxobj;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
-        <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleVersion=1.0.0;CFBundleShortVersionString=1.0.0;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSLocationUsageDescription=The reason for accessing the location information of the user;NSContactsUsageDescription=The reason for accessing the contacts;NSCalendarsUsageDescription=The reason for accessing the calendar data;NSRemindersUsageDescription=The reason for accessing the reminders;NSCameraUsageDescription=The reason for accessing the camera;NSMicrophoneUsageDescription=The reason for accessing the microphone;NSMotionUsageDescription=The reason for accessing the accelerometer;NSDesktopFolderUsageDescription=The reason for accessing the Desktop folder;NSDocumentsFolderUsageDescription=The reason for accessing the Documents folder;NSDownloadsFolderUsageDescription=The reason for accessing the Downloads folder;NSNetworkVolumesUsageDescription=The reason for accessing files on a network volume;NSRemovableVolumesUsageDescription=The reason for accessing files on a removable volume;NSSpeechRecognitionUsageDescription=The reason for requesting to send user data to Apple&apos;s speech recognition servers;ITSAppUsesNonExemptEncryption=false;NSBluetoothAlwaysUsageDescription=The reason for accessing the Bluetooth interface</VerInfo_Keys>
-        <BT_BuildType>Debug</BT_BuildType>
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-    </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_UsePackage>vclwinx;fmx;vclie;DbxCommonDriver;bindengine;IndyIPCommon;VCLRESTComponents;FireDACCommonODBC;FireDACCommonDriver;appanalytics;IndyProtocols;vclx;Skia.Package.RTL;IndyIPClient;dbxcds;vcledge;Mitov_Runtime;bindcompvclwinx;bindcompfmx;inetdb;FireDACSqliteDriver;DbxClientDriver;soapmidas;vclactnband;fmxFireDAC;dbexpress;DBXMySQLDriver;VclSmp;inet;vcltouch;fmxase;dbrtl;Skia.Package.FMX;fmxdae;FireDACMSAccDriver;CustomIPTransport;C4DWizard;vcldsnap;DBXInterBaseDriver;IndySystem;Skia.Package.VCL;vcldb;StyledComponents;vclFireDAC;bindcomp;FireDACCommon;DelphiAIDeveloper;IndyCore;RESTBackendComponents;bindcompdbx;rtl;FireDACMySQLDriver;FireDACADSDriver;StyledAnimatedComponents;RESTComponents;DBXSqliteDriver;vcl;IndyIPServer;dsnapxml;dsnapcon;adortl;vclimg;Mitov_VCL_Runtime;FireDACPgDriver;FireDAC;inetdbxpress;xmlrtl;tethering;bindcompvcl;dsnap;CloudService;fmxobj;bindcompvclsmp;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
@@ -305,9 +283,15 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="..\UnitsFMX\uMainFMX\uMainFMX.pas">
-            <Form>Form2</Form>
+            <Form>frmMain</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="..\UnitsFMX\DataModuleFMX\uModule.pas">
+            <Form>dtModule</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <None Include="..\..\DB\dump-desafio-202411280919.sql"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
             <DependentOn>..\OptionsFMX.optset</DependentOn>
@@ -350,7 +334,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="ExeFMX\DesafioFMX.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\..\DB\dump-desafio-202411280919.sql" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="D:\MEUS DOCUMENTOS\Documents\Embarcadero\Studio\Projects\ChallengeX\FMX\DprojFMX\ExeFMX\DesafioFMX.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>DesafioFMX.exe</RemoteName>
                         <Overwrite>true</Overwrite>
@@ -1312,8 +1302,6 @@
                 <Platform value="Android64">True</Platform>
                 <Platform value="iOSDevice64">True</Platform>
                 <Platform value="iOSSimARM64">True</Platform>
-                <Platform value="OSX64">True</Platform>
-                <Platform value="OSXARM64">True</Platform>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">True</Platform>
             </Platforms>

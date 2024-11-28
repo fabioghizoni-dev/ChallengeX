@@ -1,20 +1,9 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <DCC_DcuOutput>D:\MEUS DOCUMENTOS\Documents\Embarcadero\Studio\Projects\ChallengeX\FMX\UnitsFMX\DcusFMX\</DCC_DcuOutput>
-        <DCC_ExeOutput>D:\MEUS DOCUMENTOS\Documents\Embarcadero\Studio\Projects\ChallengeX\FMX\DprojFMX\ExeFMX\</DCC_ExeOutput>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <AUP_ACCESS_COARSE_LOCATION>true</AUP_ACCESS_COARSE_LOCATION>
-        <AUP_ACCESS_FINE_LOCATION>true</AUP_ACCESS_FINE_LOCATION>
-        <AUP_CALL_PHONE>true</AUP_CALL_PHONE>
-        <AUP_CAMERA>true</AUP_CAMERA>
-        <AUP_INTERNET>true</AUP_INTERNET>
-        <AUP_READ_EXTERNAL_STORAGE>true</AUP_READ_EXTERNAL_STORAGE>
-        <AUP_WRITE_EXTERNAL_STORAGE>true</AUP_WRITE_EXTERNAL_STORAGE>
-        <AUP_READ_PHONE_STATE>true</AUP_READ_PHONE_STATE>
-        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
-        <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
-        <BRCC_OutputDir>D:\MEUS DOCUMENTOS\Documents\Embarcadero\Studio\Projects\ChallengeX\FMX\ResFMX\</BRCC_OutputDir>
-        <SanitizedProjectName>DesafioFMX</SanitizedProjectName>
+        <DCC_RemoteDebug>false</DCC_RemoteDebug>
+        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <ProjectExtensions>
         <Borland.Personality>Delphi.Personality.12</Borland.Personality>

@@ -15,14 +15,16 @@ type
     pnlMain: TPanel;
     pnlRight: TPanel;
     pnlLeft: TPanel;
-    TreeView1: TTreeView;
-    DBGrid1: TDBGrid;
-    DBGrid2: TDBGrid;
+    treeView: TTreeView;
+    Grid: TDBGrid;
+    Grid2: TDBGrid;
     ConnMain: TFDConnection;
     Query: TFDQuery;
     dtSrcQuery: TDataSource;
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnSaveClick(Sender: TObject); // Evento do botão de salvar
   private
+    procedure CheckAndInsertMissingRights;
+    procedure SaveCheckboxStates;
     { Private declarations }
   public
     { Public declarations }
@@ -33,14 +35,87 @@ var
 
 implementation
 
-{$R *.dfm}
-
 uses uModule;
 
-procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
+{$R *.dfm}
+
+procedure TfrmMain.CheckAndInsertMissingRights;
+var
+  CodeRight: string;
 begin
-  FreeAndNil(frmMain);
-  FreeAndNil(dtModule);
+  // Recuperar todos os t117_ca_codigo da tabela t117_direitos_acesso
+  Query.SQL.Text := 'SELECT t117_ca_codigo FROM t117_direitos_acesso';
+  Query.Open;
+  while not Query.Eof do
+  begin
+    CodeRight := Query.FieldByName('t117_ca_codigo').AsString;
+
+    // Verificar se o t117_ca_codigo já existe em t118_direitos_acesso_usuarios
+    Query.SQL.Text := 'SELECT COUNT(*) FROM t118_direitos_acesso_usuarios ' +
+                                   'WHERE t117_ca_codigo = :t117_ca_codigo';
+    Query.ParamByName('t117_ca_codigo').AsString := CodeRight;
+    Query.Open;
+
+    if Query.Fields[0].AsInteger = 0 then
+    begin
+      // Inserir o t117_ca_codigo na tabela t118_direitos_acesso_usuarios se não existir
+      Query.SQL.Text := 'INSERT INTO t118_direitos_acesso_usuarios ' +
+                                     '(t003_nr_codigo, t117_ca_codigo, t118_ca_direito, t118_dt_ultima_alteracao) ' +
+                                     'VALUES (1, :t117_ca_codigo, ''N'', :t118_dt_ultima_alteracao)';
+      Query.ParamByName('t117_ca_codigo').AsString := CodeRight;
+      Query.ParamByName('t118_dt_ultima_alteracao').AsDateTime := Now;
+      Query.ExecSQL;
+    end;
+
+    Query.Next;
+  end;
+  Query.Close;
+end;
+
+procedure TfrmMain.SaveCheckboxStates;
+var
+  Node: TTreeNode;
+  CheckState: string;
+  CodeRight: string;
+begin
+  // Percorrer todos os nós do TreeView
+  Node := treeView.Items.GetFirstNode;
+  while Node <> nil do
+  begin
+    // Verificar se o checkbox está marcado ou desmarcado
+    if Node.Checked then
+      CheckState := 'S' // Marcado
+    else
+      CheckState := 'N'; // Desmarcado
+
+    // Aqui assumimos que o código do direito está armazenado em uma propriedade do Node,
+    // como por exemplo, usando a propriedade `Data` para associar o código ao nó.
+    if Assigned(Node.Data) then
+      CodeRight := string(Node.Data); // Recuperando o código armazenado no Node
+
+    // Atualizar a tabela t118_direitos_acesso_usuarios
+    Query.SQL.Text := 'UPDATE t118_direitos_acesso_usuarios ' +
+                                   'SET t118_ca_direito = :t118_ca_direito, ' +
+                                   't118_dt_ultima_alteracao = :t118_dt_ultima_alteracao ' +
+                                   'WHERE t003_nr_codigo = 1 AND t117_ca_codigo = :t117_ca_codigo';
+
+    Query.ParamByName('t118_ca_direito').AsString := CheckState;
+    Query.ParamByName('t117_ca_codigo').AsString := CodeRight; // CÓDIGO DIREITO
+    Query.ParamByName('t118_dt_ultima_alteracao').AsDateTime := Now; // DATETIME
+
+    Query.ExecSQL;
+
+    Node := Node.GetNext;
+  end;
+end;
+
+procedure TfrmMain.btnSaveClick(Sender: TObject);
+begin
+  // Verifica e insere os direitos ausentes
+  CheckAndInsertMissingRights;
+
+  // Salva os estados dos checkboxes no banco de dados
+  SaveCheckboxStates;
 end;
 
 end.

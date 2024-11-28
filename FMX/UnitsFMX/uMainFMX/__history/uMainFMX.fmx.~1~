@@ -1,0 +1,213 @@
+object frmMain: TfrmMain
+  Left = 0
+  Top = 0
+  Caption = 'Sistema Principal'
+  ClientHeight = 800
+  ClientWidth = 1085
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object lytMain: TLayout
+    Align = Client
+    Size.Width = 1085.000000000000000000
+    Size.Height = 800.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object lytLeft: TLayout
+      Align = MostLeft
+      Size.Width = 312.000000000000000000
+      Size.Height = 800.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object rectLeft: TRectangle
+        Align = Client
+        Fill.Color = claDarkgray
+        Size.Width = 312.000000000000000000
+        Size.Height = 800.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        object treeView: TTreeView
+          Align = Client
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 302.000000000000000000
+          Size.Height = 790.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'treeViewStyle1'
+          TabOrder = 0
+          ParentShowHint = False
+          ShowHint = False
+          ShowScrollBars = False
+          ShowCheckboxes = True
+          OnChangeCheck = treeViewChangeCheck
+          Viewport.Width = 298.000000000000000000
+          Viewport.Height = 786.000000000000000000
+          object treeViewItem: TTreeViewItem
+            IsChecked = False
+            IsExpanded = False
+            IsSelected = False
+            TabOrder = 0
+            object treeViewItem2: TTreeViewItem
+              IsChecked = False
+              IsExpanded = False
+              IsSelected = False
+              TabOrder = 0
+              object treeViewItem3: TTreeViewItem
+                IsChecked = False
+                IsExpanded = False
+                IsSelected = False
+                TabOrder = 0
+                object treeViewItem4: TTreeViewItem
+                  IsChecked = False
+                  IsExpanded = False
+                  IsSelected = False
+                  TabOrder = 0
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+    object lytRight: TLayout
+      Align = MostRight
+      Position.X = 312.000000000000000000
+      Size.Width = 773.000000000000000000
+      Size.Height = 800.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object rectRight: TRectangle
+        Align = Client
+        Fill.Color = claDarkgray
+        Size.Width = 773.000000000000000000
+        Size.Height = 800.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        object dbGrid: TGrid
+          Align = Top
+          CanFocus = True
+          ClipChildren = True
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 768.000000000000000000
+          Size.Height = 340.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          RowCount = 200
+          Viewport.Width = 748.000000000000000000
+          Viewport.Height = 315.000000000000000000
+        end
+        object dbGrid2: TGrid
+          Align = Top
+          CanFocus = True
+          ClipChildren = True
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.Y = 355.000000000000000000
+          Size.Width = 768.000000000000000000
+          Size.Height = 334.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          RowCount = 200
+          Viewport.Width = 748.000000000000000000
+          Viewport.Height = 309.000000000000000000
+        end
+        object btnSalvarBanco: TButton
+          Position.X = 296.000000000000000000
+          Position.Y = 706.000000000000000000
+          Size.Width = 193.000000000000000000
+          Size.Height = 78.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'Salvar'
+          TextSettings.Trimming = None
+        end
+      end
+    end
+    object lytCenter: TLayout
+      Align = Client
+      Size.Width = 0.000000000000000000
+      Size.Height = 800.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object rectCenter: TRectangle
+        Align = Client
+        Fill.Color = claDarkgray
+        Size.Width = 8.000000000000000000
+        Size.Height = 800.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+      end
+    end
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = dtModule.t117_direitos_acesso
+    ScopeMappings = <>
+    Left = 232
+    Top = 680
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 156
+    Top = 629
+    object LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      GridControl = dbGrid
+      Columns = <
+        item
+          MemberName = 't117_ca_codigo'
+          TextWidth = 24
+          ColumnStyle = 'Column'
+        end
+        item
+          MemberName = 't117_ca_descricao'
+          TextWidth = 50
+          ColumnStyle = 'Column'
+        end
+        item
+          MemberName = 't117_ca_nome_menu'
+          TextWidth = 60
+        end>
+    end
+    object LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB2
+      GridControl = dbGrid2
+      Columns = <
+        item
+          MemberName = 't003_nr_codigo'
+          TextWidth = 33
+          Alignment = taCenter
+        end
+        item
+          MemberName = 't117_ca_codigo'
+          TextWidth = 30
+        end
+        item
+          MemberName = 't118_ca_direito'
+          TextWidth = 30
+          Alignment = taCenter
+        end
+        item
+          MemberName = 't118_dt_ultima_alteracao'
+          TextWidth = 40
+          Alignment = taCenter
+        end>
+    end
+  end
+  object BindSourceDB2: TBindSourceDB
+    DataSet = dtModule.t118_direitos_acesso_usuarios
+    ScopeMappings = <>
+    Left = 104
+    Top = 696
+  end
+end
