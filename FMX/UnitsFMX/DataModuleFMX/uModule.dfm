@@ -1,8 +1,10 @@
 object dtModule: TdtModule
+  OnCreate = DataModuleCreate
   Height = 700
   Width = 898
   object DriverPG: TFDPhysPgDriverLink
-    VendorHome = 'C:\Users\User\Desktop\ChallengeX\lib\64X'
+    VendorHome = 'C:\Users\User\Desktop\ChallengeX\FMX\DprojFMX\ExeFMX'
+    VendorLib = 'C:\Users\User\Desktop\ChallengeX\FMX\DprojFMX\ExeFMX\libpq.dll'
     Left = 40
     Top = 40
   end
@@ -13,10 +15,12 @@ object dtModule: TdtModule
       'Password=123'
       'Server=localhost'
       'DriverID=PG')
+    Connected = True
     Left = 112
     Top = 40
   end
   object t117_direitos_acesso: TFDTable
+    Active = True
     IndexFieldNames = 't117_ca_codigo'
     Connection = Conn
     ResourceOptions.AssignedValues = [rvEscapeExpand]
@@ -40,6 +44,7 @@ object dtModule: TdtModule
     end
   end
   object t118_direitos_acesso_usuarios: TFDTable
+    Active = True
     IndexFieldNames = 't003_nr_codigo;t117_ca_codigo'
     Connection = Conn
     ResourceOptions.AssignedValues = [rvEscapeExpand]

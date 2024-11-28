@@ -3,14 +3,43 @@ unit uMainFMX;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts, System.Rtti,
-  FMX.Grid.Style, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Grid, FMX.Objects, FMX.TreeView,
-  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
-  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, FMX.StdCtrls, Data.Bind.EngExt, Fmx.Bind.DBEngExt,
-  Fmx.Bind.Grid, System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.Components, Data.Bind.Grid,
-  Data.Bind.DBScope;
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  System.RegularExpressions,
+  System.Generics.Collections,
+  System.Bindings.Outputs,
+  System.Rtti,
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.TreeView,
+  FMX.Layouts,
+  FMX.Objects,
+  FMX.Controls.Presentation,
+  FMX.Edit,
+  FMX.EditBox,
+  FMX.NumberBox,
+  FMX.StdCtrls,
+  FMX.Styles.Objects,
+  FMX.Bind.Navigator,
+  FMX.Grid.Style,
+  FMX.ScrollBox,
+  FMX.Grid,
+  FMX.Bind.DBEngExt,
+  FMX.Bind.Grid,
+  FMX.Bind.Editors,
+  FireDAC.Comp.Client,
+  FireDAC.Stan.Param,
+  Data.Bind.Components,
+  Data.Bind.Grid,
+  Data.Bind.DBScope,
+  Data.Bind.Controls,
+  Data.Bind.EngExt;
 
 type
   TAcesso = class
@@ -23,33 +52,29 @@ type
 
 type
   TfrmMain = class(TForm)
-    lytMain: TLayout;
-    lytLeft: TLayout;
-    lytRight: TLayout;
-    lytCenter: TLayout;
-    rectLeft: TRectangle;
-    rectCenter: TRectangle;
-    rectRight: TRectangle;
-    dbGrid: TGrid;
-    dbGrid2: TGrid;
-    btnSalvarBanco: TButton;
-    treeView: TTreeView;
+    rectMain: TRectangle;
+    TreeView: TTreeView;
     treeViewItem: TTreeViewItem;
     treeViewItem2: TTreeViewItem;
     treeViewItem3: TTreeViewItem;
     treeViewItem4: TTreeViewItem;
-    BindSourceDB1: TBindSourceDB;
+    btnSalvarBanco: TButton;
+    dbGrid: TGrid;
+    bndSourceDB: TBindSourceDB;
+    bndList: TBindingsList;
     LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
-    BindingsList1: TBindingsList;
-    BindSourceDB2: TBindSourceDB;
+    dbGrid2: TGrid;
+    bndSourceDB2: TBindSourceDB;
     LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource;
     function CriarTreeViewItem(Parent: TTreeViewItem; const Text, NumeroID: String)
       : TTreeViewItem;
     procedure FormCreate(Sender: TObject);
     procedure treeViewChangeCheck(Sender: TObject);
+    procedure btnSalvarBancoClick(Sender: TObject);
   private
     { private declarations }
   public
+    procedure IterarTreeView(Item: TTreeViewItem; SQl: TFDQuery);
     procedure ListartreeView;
     { public declarations }
   end;
@@ -57,11 +82,12 @@ type
 var
   frmMain: TfrmMain;
 
+
 implementation
 
-{$R *.fmx}
-
 uses uModule;
+
+{$R *.fmx}
 
 { CONSTRUCTOR DA CLASSE IDENTIFICADORA DOS ITENS }
 constructor TAcesso.Create(const ATexto, ANumero: String; AChecked: Boolean);
@@ -75,7 +101,7 @@ function TfrmMain.CriarTreeViewItem(Parent: TTreeViewItem; const Text, NumeroID:
 var
   Item: TTreeViewItem;
 begin
-  Item := TTreeViewItem.Create(treeView);
+  Item := TTreeViewItem.Create(TreeView);
   Item.Text := Text;
 
     If Assigned(Parent) then
@@ -102,6 +128,87 @@ begin
       Acesso.CheckedID := Item.IsChecked;
 
     end;
+  end;
+end;
+
+procedure TfrmMain.IterarTreeView(Item: TTreeViewItem; SQL: TFDQuery);
+var
+  I: Integer;
+  SubItem: TTreeViewItem;
+  Acesso: TAcesso;
+begin
+  // Verifica se o Item atual é válido
+  if Assigned(Item.TagObject) and (Item.TagObject is TAcesso) then
+  begin
+    Acesso := TAcesso(Item.TagObject);
+
+    // Define a instrução SQL para verificar ou salvar o registro
+    SQL.SQL.Text := 'SELECT COUNT(*) FROM t118_direitos_acesso_usuarios ' +
+                    'WHERE t003_nr_codigo = :Usuario AND t117_ca_codigo = :Codigo';
+    SQL.Params.Clear;
+    SQL.ParamByName('Usuario').AsInteger := 1; // ID do usuário
+    SQL.ParamByName('Codigo').AsString := Acesso.NumeroID;
+    SQL.Open;
+
+    if SQL.Fields[0].AsInteger > 0 then
+    begin
+      // Atualiza registro existente
+      SQL.Close;
+      SQL.SQL.Text := 'UPDATE t118_direitos_acesso_usuarios SET ' +
+                      't118_ca_direito = :Direito, t118_dt_ultima_alteracao = CURRENT_TIMESTAMP ' +
+                      'WHERE t003_nr_codigo = :Usuario AND t117_ca_codigo = :Codigo';
+    end
+    else
+    begin
+      // Insere novo registro
+      SQL.Close;
+      SQL.SQL.Text := 'INSERT INTO t118_direitos_acesso_usuarios ' +
+                      '(t003_nr_codigo, t117_ca_codigo, t118_ca_direito, t118_dt_ultima_alteracao) ' +
+                      'VALUES (:Usuario, :Codigo, :Direito, CURRENT_TIMESTAMP)';
+    end;
+
+    SQL.ParamByName('Usuario').AsInteger := 1; // ID do usuário
+    SQL.ParamByName('Codigo').AsString := Acesso.NumeroID;
+
+    if Acesso.CheckedID then
+      SQL.ParamByName('Direito').AsString := 'S'
+    else
+      SQL.ParamByName('Direito').AsString := 'N';
+
+    SQL.ExecSQL;
+  end;
+
+  // Itera pelos sub-itens manualmente
+  for I := 0 to Item.Count - 1 do
+  begin
+    SubItem := Item.Items[I];
+    IterarTreeView(SubItem, SQL);
+  end;
+end;
+
+procedure TfrmMain.btnSalvarBancoClick(Sender: TObject);
+var
+  I: Integer;
+  RootItem: TTreeViewItem;
+  SQL: TFDQuery;
+begin
+  if not dtModule.Conn.Connected then
+    raise Exception.Create('A conexão com o banco de dados não está ativa.');
+
+  SQL := TFDQuery.Create(nil);
+  try
+    SQL.Connection := dtModule.Conn;
+
+    // Itera sobre todos os itens de nível superior no TreeView
+    for I := 0 to TreeView.Count - 1 do
+    begin
+      RootItem := TreeView.Items[I];
+      IterarTreeView(RootItem, SQL);
+    end;
+
+    ShowMessage('Dados salvos com sucesso no banco de dados.');
+  finally
+    SQL.Free;
   end;
 end;
 

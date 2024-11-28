@@ -1,0 +1,181 @@
+object frmMain: TfrmMain
+  Left = 0
+  Top = 0
+  ClientHeight = 813
+  ClientWidth = 1122
+  Position = ScreenCenter
+  Visible = True
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object rectMain: TRectangle
+    Align = Client
+    Fill.Color = claWhitesmoke
+    Size.Width = 1122.000000000000000000
+    Size.Height = 813.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object treeView: TTreeView
+      Align = Left
+      Size.Width = 321.000000000000000000
+      Size.Height = 813.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'treeViewStyle1'
+      TabOrder = 0
+      ParentShowHint = False
+      ShowHint = False
+      ShowScrollBars = False
+      ShowCheckboxes = True
+      OnChangeCheck = treeViewChangeCheck
+      Viewport.Width = 317.000000000000000000
+      Viewport.Height = 809.000000000000000000
+      object treeViewItem: TTreeViewItem
+        IsChecked = False
+        IsExpanded = False
+        IsSelected = False
+        TabOrder = 0
+        object treeViewItem2: TTreeViewItem
+          IsChecked = False
+          IsExpanded = False
+          IsSelected = False
+          TabOrder = 0
+          object treeViewItem3: TTreeViewItem
+            IsChecked = False
+            IsExpanded = False
+            IsSelected = False
+            TabOrder = 0
+            object treeViewItem4: TTreeViewItem
+              IsChecked = False
+              IsExpanded = False
+              IsSelected = False
+              TabOrder = 0
+            end
+          end
+        end
+      end
+    end
+    object btnSalvarBanco: TButton
+      StyledSettings = []
+      Position.X = 860.000000000000000000
+      Position.Y = 706.000000000000000000
+      Size.Width = 217.000000000000000000
+      Size.Height = 65.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'btnSalvarBancoStyle1'
+      TabOrder = 1
+      Text = 'Salvar no Banco'
+      TextSettings.Font.Family = 'Tahoma'
+      TextSettings.Font.Size = 22.000000000000000000
+      TextSettings.Trimming = None
+      OnClick = btnSalvarBancoClick
+    end
+    object dbGrid: TGrid
+      CanFocus = True
+      ClipChildren = True
+      Position.X = 329.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 778.000000000000000000
+      Size.Height = 312.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      RowCount = 200
+      Viewport.Width = 758.000000000000000000
+      Viewport.Height = 271.000000000000000000
+    end
+    object dbGrid2: TGrid
+      CanFocus = True
+      ClipChildren = True
+      Position.X = 329.000000000000000000
+      Position.Y = 386.000000000000000000
+      Size.Width = 778.000000000000000000
+      Size.Height = 312.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      RowCount = 200
+      Viewport.Width = 758.000000000000000000
+      Viewport.Height = 271.000000000000000000
+    end
+    object bndNavigator: TBindNavigator
+      Position.X = 507.000000000000000000
+      Position.Y = 324.000000000000000000
+      Size.Width = 470.000000000000000000
+      Size.Height = 57.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      DataSource = bndSourceDB
+      xRadius = 4.000000000000000000
+      yRadius = 4.000000000000000000
+    end
+    object bndNavigator2: TBindNavigator
+      Position.X = 424.000000000000000000
+      Position.Y = 706.000000000000000000
+      Size.Width = 420.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      DataSource = bndSourceDB2
+      xRadius = 4.000000000000000000
+      yRadius = 4.000000000000000000
+    end
+  end
+  object bndSourceDB: TBindSourceDB
+    DataSet = dtModule.t117_direitos_acesso
+    ScopeMappings = <>
+    Left = 129
+    Top = 421
+  end
+  object bndList: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 68
+    Top = 421
+    object LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = bndSourceDB
+      GridControl = dbGrid
+      Columns = <
+        item
+          MemberName = 't117_ca_codigo'
+          TextWidth = 30
+        end
+        item
+          MemberName = 't117_ca_descricao'
+          TextWidth = 50
+        end
+        item
+          MemberName = 't117_ca_nome_menu'
+          TextWidth = 60
+        end>
+    end
+    object LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = bndSourceDB2
+      GridControl = dbGrid2
+      Columns = <
+        item
+          MemberName = 't003_nr_codigo'
+          TextWidth = 35
+        end
+        item
+          MemberName = 't117_ca_codigo'
+          TextWidth = 35
+        end
+        item
+          MemberName = 't118_ca_direito'
+          TextWidth = 35
+        end
+        item
+          MemberName = 't118_dt_ultima_alteracao'
+          TextWidth = 34
+        end>
+    end
+  end
+  object bndSourceDB2: TBindSourceDB
+    DataSet = dtModule.t118_direitos_acesso_usuarios
+    ScopeMappings = <>
+    Left = 212
+    Top = 421
+  end
+end

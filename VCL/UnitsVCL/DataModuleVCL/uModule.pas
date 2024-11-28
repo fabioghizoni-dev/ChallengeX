@@ -25,6 +25,7 @@ type
     t118_direitos_acesso_usuariost117_ca_codigo: TWideStringField;
     t118_direitos_acesso_usuariost118_ca_direito: TWideStringField;
     t118_direitos_acesso_usuariost118_dt_ultima_alteracao: TSQLTimeStampField;
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,5 +40,13 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+
+procedure TdtModule.DataModuleCreate(Sender: TObject);
+begin
+  if DriverPG.VendorHome = '' then
+  DriverPG.VendorHome := ExtractFilePath('Application.ExeName')+'\ExeFMX';
+  if DriverPG.VendorLib = '' then
+  DriverPG.VendorLib := ExtractFilePath('Application.ExeName')+'\libpq.dll';
+end;
 
 end.

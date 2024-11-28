@@ -3,11 +3,30 @@ unit uModule;
 interface
 
 uses
-  System.SysUtils, System.Classes, FireDAC.Phys.PGDef, FireDAC.Stan.Intf, FireDAC.Stan.Option,
-  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
-  FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.PG, FireDAC.FMXUI.Wait, FireDAC.Stan.Param,
-  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  FireDAC.VCLUI.Wait;
+  System.Classes,
+  FireDAC.Phys.PGDef,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.PG,
+  FireDAC.FMXUI.Wait,
+  FireDAC.Stan.Param,
+  FireDAC.DatS,
+  FireDAC.DApt.Intf,
+  FireDAC.DApt,
+  Data.DB,
+  FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client,
+  FireDAC.VCLUI.Wait,
+  System.SysUtils,
+  Windows;
+
 
 type
   TdtModule = class(TDataModule)
@@ -24,6 +43,7 @@ type
     t118_direitos_acesso_usuariost117_ca_codigo: TWideStringField;
     t118_direitos_acesso_usuariost118_ca_direito: TWideStringField;
     t118_direitos_acesso_usuariost118_dt_ultima_alteracao: TSQLTimeStampField;
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,5 +57,13 @@ implementation
 
 {%CLASSGROUP 'FMX.Controls.TControl'}
 {$R *.dfm}
+
+procedure TdtModule.DataModuleCreate(Sender: TObject);
+begin
+  if DriverPG.VendorHome = '' then
+  DriverPG.VendorHome := ExtractFilePath('Application.ExeName')+'\ExeFMX';
+  if DriverPG.VendorLib = '' then
+  DriverPG.VendorLib := ExtractFilePath('Application.ExeName')+'\libpq.dll';
+end;
 
 end.

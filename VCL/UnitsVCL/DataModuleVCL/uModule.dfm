@@ -1,4 +1,5 @@
 object dtModule: TdtModule
+  OnCreate = DataModuleCreate
   Height = 675
   Width = 1010
   object Conn: TFDConnection
@@ -78,9 +79,8 @@ object dtModule: TdtModule
     Top = 395
   end
   object DriverPG: TFDPhysPgDriverLink
-    VendorLib = 
-      'C:\Users\User\Desktop\ChallengeX-main\ChallengeX-main\VCL\lib\li' +
-      'bpq.dll'
+    VendorHome = 'C:\Users\User\Desktop\ChallengeX\VCL\DprojVCL\ExeVCL'
+    VendorLib = 'C:\Users\User\Desktop\ChallengeX\VCL\DprojVCL\ExeVCL\libpq.dll'
     Left = 123
     Top = 48
   end
